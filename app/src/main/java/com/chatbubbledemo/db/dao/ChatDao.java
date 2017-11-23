@@ -30,25 +30,25 @@ import java.util.List;
 
 @Dao
 public interface ChatDao {
-    @Query("SELECT * FROM ChatEntity")
+    @Query("SELECT * FROM chats")
     LiveData<List<ChatEntity>> loadAllProducts();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(List<ChatEntity> products);
+    void insertAll(List<ChatEntity> chats);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(ChatEntity products);
 
-    @Query("select * from ChatEntity where id = :productId")
+    @Query("select * from chats where id = :productId")
     LiveData<ChatEntity> loadProduct(int productId);
 
-    @Query("select * from ChatEntity where id = :productId")
+    @Query("select * from chats where id = :productId")
     ChatEntity loadProductSync(int productId);
 
     @Delete
     void deleteProductTable(ChatEntity chatEntity);
 
-    @Query("DELETE FROM ChatEntity where id = :productId")
+    @Query("DELETE FROM chats where id = :productId")
     void deleteProduct(int productId);
 
 }

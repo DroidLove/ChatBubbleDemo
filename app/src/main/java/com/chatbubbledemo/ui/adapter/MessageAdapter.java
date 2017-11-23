@@ -30,11 +30,6 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     Context activity;
     public final int VIEW_DATE_TIME = 1, VIEW_RIGHT_USER = 2, VIEW_LEFT_USER = 3;
 
-    private Message.OnIconClickListener mOnIconClickListener;
-    private Message.OnBubbleClickListener mOnBubbleClickListener;
-    private Message.OnIconLongClickListener mOnIconLongClickListener;
-    private Message.OnBubbleLongClickListener mOnBubbleLongClickListener;
-
     private int mUsernameTextColor;
     private int mSendTimeTextColor;
     private int mDateSeparatorColor;
@@ -173,22 +168,6 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public void setRightBubbleColor(int color) {
         mRightBubbleColor = color;
         notifyDataSetChanged();
-    }
-
-    public void setOnIconClickListener(Message.OnIconClickListener onIconClickListener) {
-        mOnIconClickListener = onIconClickListener;
-    }
-
-    public void setOnBubbleClickListener(Message.OnBubbleClickListener onBubbleClickListener) {
-        mOnBubbleClickListener = onBubbleClickListener;
-    }
-
-    public void setOnIconLongClickListener(Message.OnIconLongClickListener onIconLongClickListener) {
-        mOnIconLongClickListener = onIconLongClickListener;
-    }
-
-    public void setOnBubbleLongClickListener(Message.OnBubbleLongClickListener onBubbleLongClickListener) {
-        mOnBubbleLongClickListener = onBubbleLongClickListener;
     }
 
     public void setUsernameTextColor(int usernameTextColor) {
