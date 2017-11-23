@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ChatBubbleDemo</string>
+
+    <string name="chat_hint">Type your message here…</string>
 </resources>
