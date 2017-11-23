@@ -7,4 +7,10 @@
     <color name="textWhite">#ffffff</color>
     <color name="textDate">#7f7f7f</color>
     <color name="orange">#ff9c01</color>
+
+    <color name="chat_adoption_bubble">#17a955</color>
+    <color name="chat_date_left_bubble">#929292</color>
+    <color name="blue_900">#2a36b1</color>
+    <color name="green_dim">#A6C9C5</color>
+    <color name="blueGray500">#607D8B</color>
 </resources>

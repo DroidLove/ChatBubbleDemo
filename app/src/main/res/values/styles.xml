@@ -19,6 +19,17 @@
         <item name="cardUseCompatPadding">true</item>
     </style>
 
+    <style name="CardViewStyle_Normal" parent="CardView">
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="cardCornerRadius">@dimen/card_corner_radius</item>
+        <item name="cardElevation">@dimen/card_elevation</item>
+        <item name="cardPreventCornerOverlap">false</item>
+        <item name="cardBackgroundColor">@color/textWhite</item>
+        <item name="cardUseCompatPadding">true</item>
+    </style>
+
     <style name="TextDate_Normal" parent="android:Widget.TextView">
         <item name="android:textColor">@color/textDate</item>
         <item name="android:textSize">@dimen/textSize_12</item>
