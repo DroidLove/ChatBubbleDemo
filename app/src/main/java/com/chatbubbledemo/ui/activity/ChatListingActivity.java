@@ -34,6 +34,13 @@ public class ChatListingActivity extends AppCompatActivity {
 
         initAdapter(mChatList);
 
+        binding.btnChatSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+  //              mChatList = new Message()
+            }
+        });
     }
 
     private void initAdapter(ArrayList<Message> messages) {

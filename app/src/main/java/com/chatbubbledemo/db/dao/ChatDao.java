@@ -23,32 +23,32 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 
-import com.chatbubbledemo.db.entity.ProductEntity;
+import com.chatbubbledemo.db.entity.ChatEntity;
 
 import java.util.List;
 
 
 @Dao
-public interface ProductDao {
-    @Query("SELECT * FROM products")
-    LiveData<List<ProductEntity>> loadAllProducts();
+public interface ChatDao {
+    @Query("SELECT * FROM ChatEntity")
+    LiveData<List<ChatEntity>> loadAllProducts();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(List<ProductEntity> products);
+    void insertAll(List<ChatEntity> products);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(ProductEntity products);
+    void insert(ChatEntity products);
 
-    @Query("select * from products where id = :productId")
-    LiveData<ProductEntity> loadProduct(int productId);
+    @Query("select * from ChatEntity where id = :productId")
+    LiveData<ChatEntity> loadProduct(int productId);
 
-    @Query("select * from products where id = :productId")
-    ProductEntity loadProductSync(int productId);
+    @Query("select * from ChatEntity where id = :productId")
+    ChatEntity loadProductSync(int productId);
 
     @Delete
-    void deleteProductTable(ProductEntity productEntity);
+    void deleteProductTable(ChatEntity chatEntity);
 
-    @Query("DELETE FROM products where id = :productId")
+    @Query("DELETE FROM ChatEntity where id = :productId")
     void deleteProduct(int productId);
 
 }

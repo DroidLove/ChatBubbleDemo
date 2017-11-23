@@ -483,35 +483,4 @@ public class Message {
     public void setDateFormatter(ITimeFormatter dateFormatter) {
         mDateFormatter = dateFormatter;
     }
-
-    /**
-     * Return Calendar to compare the day <br>
-     * Reset hour, min, sec, milli sec.<br>
-     *
-     * @return formatted calendar object
-     */
-    public Calendar getCompareCalendar() {
-        Calendar calendar = (Calendar) mCreatedAt.clone();
-        calendar.set(Calendar.HOUR, 0);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
-        calendar.set(Calendar.MILLISECOND, 0);
-        return calendar;
-    }
-
-    public interface OnBubbleClickListener {
-        void onClick(Message message);
-    }
-
-    public interface OnBubbleLongClickListener {
-        void onLongClick(Message message);
-    }
-
-    public interface OnIconClickListener {
-        void onIconClick(Message message);
-    }
-
-    public interface OnIconLongClickListener {
-        void onIconLongClick(Message message);
-    }
 }
