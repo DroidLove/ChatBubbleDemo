@@ -16,19 +16,23 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:alignContent="stretch"
+            android:background="@drawable/shape_incoming_message"
             android:layout_marginEnd="40dp"
             android:layout_marginRight="40dp"
             app:alignItems="stretch"
+            android:padding="@dimen/dimen_16"
             app:flexWrap="wrap"
             app:justifyContent="flex_end">
 
             <TextView
-                android:id="@id/messageText"
+                android:id="@+id/textview_message_receiver"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:textColor="@color/textWhite"
+                android:text=""/>
 
             <TextView
-                android:id="@+id/messageTime"
+                android:id="@+id/textview_message_receiver_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/messageText"

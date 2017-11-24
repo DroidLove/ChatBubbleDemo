@@ -8,7 +8,7 @@ import android.content.Context;
 import com.chatbubbledemo.db.dao.ChatDao;
 import com.chatbubbledemo.db.entity.ChatEntity;
 
-@Database(entities = {ChatEntity.class}, version = 1,exportSchema =false)
+@Database(entities = {ChatEntity.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     public static final String DATABASE_NAME = "chatbubble-db";

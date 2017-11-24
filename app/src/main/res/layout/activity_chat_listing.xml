@@ -15,9 +15,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <include
-                android:id="@+id/common_toolbar_layout"
-                layout="@layout/common_chat_layout_with_menu" />
+            <!--<include-->
+                <!--android:id="@+id/common_toolbar_layout"-->
+                <!--layout="@layout/common_chat_layout_with_menu" />-->
 
             <!--<android.support.v7.widget.RecyclerView-->
             <!--android:id="@+id/lvChat"-->
@@ -31,7 +31,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_above="@+id/llChatBottom"
-                android:layout_below="@id/common_toolbar_layout"
                 android:divider="@null" />
 
             <LinearLayout
@@ -71,7 +70,7 @@
                             <!--app:srcCompat="@drawable/ic_smartphone_gray" />-->
 
                         <android.support.v7.widget.AppCompatEditText
-                            android:id="@+id/etChat"
+                            android:id="@+id/editTextChat"
                             style="@style/TextDate_Normal"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -101,7 +100,7 @@
                     android:gravity="center">
 
                     <android.support.design.widget.FloatingActionButton
-                        android:id="@+id/btnChatSend"
+                        android:id="@+id/buttonChatSend"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:backgroundTint="@color/orange"

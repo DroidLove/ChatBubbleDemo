@@ -11,9 +11,14 @@ public class Message {
     private String text;
     private Date createdAt;
     private User user;
+    private String userType;
+    private boolean isSender;
 
-    public Message(String id, User user, String text) {
-        this(id, user, text, new Date());
+    public Message(String id, String userType, String text,boolean isSender) {
+        this.id = id;
+        this.text = text;
+        this.userType = userType;
+        this.isSender = isSender;
     }
 
     public Message(String id, User user, String text, Date createdAt) {
@@ -49,5 +54,21 @@ public class Message {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
+
+    public boolean isSender() {
+        return isSender;
+    }
+
+    public void setSender(boolean sender) {
+        isSender = sender;
     }
 }

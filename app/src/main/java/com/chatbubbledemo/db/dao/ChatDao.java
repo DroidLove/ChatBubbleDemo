@@ -31,7 +31,7 @@ import java.util.List;
 @Dao
 public interface ChatDao {
     @Query("SELECT * FROM chats")
-    LiveData<List<ChatEntity>> loadAllProducts();
+    LiveData<List<ChatEntity>> loadAllChatHistory();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<ChatEntity> chats);

@@ -1,12 +1,9 @@
 package com.chatbubbledemo.ui.adapter;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -15,9 +12,10 @@ import com.chatbubbledemo.R;
 import com.chatbubbledemo.databinding.MessageDateTimeBinding;
 import com.chatbubbledemo.databinding.MessageViewLeftBinding;
 import com.chatbubbledemo.databinding.MessageViewRightBinding;
-import com.chatbubbledemo.ui.helper.Message;
+import com.chatbubbledemo.db.entity.ChatEntity;
+import com.chatbubbledemo.ui.helper.Constants;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Custom list adapter for the chat timeline
@@ -26,7 +24,7 @@ import java.util.ArrayList;
 public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private LayoutInflater mLayoutInflater;
-    private ArrayList<Message> mMessagesList;
+    private List<ChatEntity> mMessagesList;
     Context activity;
     public final int VIEW_DATE_TIME = 1, VIEW_RIGHT_USER = 2, VIEW_LEFT_USER = 3;
 
@@ -47,7 +45,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
      */
     private int mMessageBottomMargin = 5;
 
-    public MessageAdapter(Context context, ArrayList<Message> objects) {
+    public MessageAdapter(Context context, List<ChatEntity> objects) {
         mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mMessagesList = objects;
         activity = context;
@@ -60,7 +58,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         mStatusColor = ContextCompat.getColor(activity, R.color.blueGray500);
     }
 
-    public void refresh(ArrayList<Message> data) {
+    public void refresh(List<ChatEntity> data) {
         mMessagesList.clear();
         mMessagesList.addAll(data);
         notifyDataSetChanged();
@@ -91,7 +89,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         if (holder instanceof MessageDateTimeHolder) {
 
-            final Message message = mMessagesList.get(position);
+            final ChatEntity message = mMessagesList.get(position);
 //            String date = DateUtils.convertDateFormat(message.getMessageDate(), DateUtils.yyyy_MM_dd_HH_mm_ss_ampm, DateUtils.hh_mm_a);
 
 //            String mDate = DateUtils.getChatFormattedDate(activity, message.getMessageDate());
@@ -99,7 +97,9 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         } else if (holder instanceof MessageRightViewHolder) {
 
-//            final Message message = mMessagesList.get(position);
+            final ChatEntity message = mMessagesList.get(position);
+            ((MessageRightViewHolder) holder).binding.textviewMessageSender.setText(message.getChatContent());
+
 //            ((MessageRightViewHolder) holder).binding.cardview.setCardBackgroundColor(ContextCompat.getColor(activity, message.getmRightBubbleColor()));
 //            ((MessageRightViewHolder) holder).binding.messageText.setText(message.getMessageText());
 //            String date = DateUtils.getLocalTimeString(message.getMessageDate(), DateUtils.yyyy_MM_dd_HH_mm_ss_ampm, DateUtils.hh_mm_a);
@@ -107,6 +107,9 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 //            ((MessageRightViewHolder) holder).binding.messageTime.setTextColor(ContextCompat.getColor(activity, message.getmRightDateColor()));
 
         } else if (holder instanceof MessageLeftViewHolder) {
+
+            final ChatEntity message = mMessagesList.get(position);
+            ((MessageLeftViewHolder) holder).binding.textviewMessageReceiver.setText(message.getChatContent());
 
 //            final Message message = mMessagesList.get(position);
 //            ((MessageLeftViewHolder) holder).binding.cardview.setCardBackgroundColor(ContextCompat.getColor(activity, message.getmLeftBubbleColor()));
@@ -120,92 +123,23 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public int getItemViewType(int position) {
-//        Message item = mMessagesList.get(position);
+        ChatEntity itemMessage = mMessagesList.get(position);
 
 //        if (item.getMessageType().equalsIgnoreCase(DATE_TIME)) {
 //            return VIEW_DATE_TIME;
 //        } else {
-//            return item.isRightMessage() ? VIEW_RIGHT_USER : VIEW_LEFT_USER;
-            return (position % 2 == 0) ? VIEW_RIGHT_USER : VIEW_LEFT_USER;
+
+        if(itemMessage.getChatType().equalsIgnoreCase(Constants.MESSAGE_SENDER))
+            return VIEW_RIGHT_USER;
+        else
+            return VIEW_LEFT_USER;
+//            return (position % 2 == 0) ? VIEW_RIGHT_USER : VIEW_LEFT_USER;
 //        }
     }
 
     @Override
     public int getItemCount() {
-        return 10;
-    }
-
-    /**
-     * Add color to drawable
-     *
-     * @param color    setting color
-     * @param drawable which be set color
-     */
-    public void setColorDrawable(int color, Drawable drawable) {
-        if (drawable == null) {
-            return;
-        }
-        ColorStateList colorStateList = ColorStateList.valueOf(color);
-        Drawable wrappedDrawable = DrawableCompat.wrap(drawable);
-        DrawableCompat.setTintList(wrappedDrawable, colorStateList);
-    }
-
-    /**
-     * Set left bubble background color
-     *
-     * @param color left bubble color
-     */
-    public void setLeftBubbleColor(int color) {
-        mLeftBubbleColor = color;
-        notifyDataSetChanged();
-    }
-
-    /**
-     * Set right bubble background color
-     *
-     * @param color right bubble color
-     */
-    public void setRightBubbleColor(int color) {
-        mRightBubbleColor = color;
-        notifyDataSetChanged();
-    }
-
-    public void setUsernameTextColor(int usernameTextColor) {
-        mUsernameTextColor = usernameTextColor;
-        notifyDataSetChanged();
-    }
-
-    public void setSendTimeTextColor(int sendTimeTextColor) {
-        mSendTimeTextColor = sendTimeTextColor;
-        notifyDataSetChanged();
-    }
-
-    public void setDateSeparatorColor(int dateSeparatorColor) {
-        mDateSeparatorColor = dateSeparatorColor;
-        notifyDataSetChanged();
-    }
-
-    public void setRightMessageTextColor(int rightMessageTextColor) {
-        mRightMessageTextColor = rightMessageTextColor;
-        notifyDataSetChanged();
-    }
-
-    public void setLeftMessageTextColor(int leftMessageTextColor) {
-        mLeftMessageTextColor = leftMessageTextColor;
-        notifyDataSetChanged();
-    }
-
-    public void setMessageTopMargin(int messageTopMargin) {
-        mMessageTopMargin = messageTopMargin;
-    }
-
-    public void setMessageBottomMargin(int messageBottomMargin) {
-        mMessageBottomMargin = messageBottomMargin;
-    }
-
-    public void setStatusColor(int statusTextColor) {
-        mStatusColor = statusTextColor;
-        notifyDataSetChanged();
+        return mMessagesList.size();
     }
 
     private class MessageDateTimeHolder extends RecyclerView.ViewHolder {

@@ -10,7 +10,22 @@
         android:layout_marginRight="16dp"
         android:layout_marginTop="8dp">
 
-        <com.google.android.flexbox.FlexboxLayout
+        <!--<com.google.android.flexbox.FlexboxLayout-->
+            <!--android:id="@id/bubble"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentEnd="true"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_marginLeft="88dp"-->
+            <!--android:layout_marginStart="88dp"-->
+            <!--app:alignContent="stretch"-->
+            <!--android:padding="@dimen/dimen_16"-->
+            <!--app:alignItems="stretch"-->
+            <!--android:background="@drawable/shape_outcoming_message"-->
+            <!--app:flexWrap="wrap"-->
+            <!--app:justifyContent="flex_end"-->
+
+        <RelativeLayout
             android:id="@id/bubble"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -18,19 +33,19 @@
             android:layout_alignParentRight="true"
             android:layout_marginLeft="88dp"
             android:layout_marginStart="88dp"
-            app:alignContent="stretch"
-            app:alignItems="stretch"
-            app:flexWrap="wrap"
-            app:justifyContent="flex_end">
+            android:padding="@dimen/dimen_16"
+            android:background="@drawable/shape_outcoming_message">
 
             <TextView
-                android:id="@id/messageText"
+                android:id="@+id/textview_message_sender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Hii"
+                android:textColor="@color/textWhite"
                 android:layout_alignWithParentIfMissing="true"/>
 
             <TextView
-                android:id="@id/messageTime"
+                android:id="@+id/textview_message_time_sender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/messageText"
@@ -39,7 +54,7 @@
                 app:layout_alignSelf="center"
                 app:layout_order="1"/>
 
-        </com.google.android.flexbox.FlexboxLayout>
+        </RelativeLayout>
 
     </RelativeLayout>
 </layout>
