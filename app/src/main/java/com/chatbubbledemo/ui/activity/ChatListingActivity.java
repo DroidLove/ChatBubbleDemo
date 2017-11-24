@@ -56,7 +56,7 @@ public class ChatListingActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 // adding the sender and the receiver data
-                if (!binding.editTextChat.getText().toString().equalsIgnoreCase("")) {
+                if (!binding.editTextChat.getText().toString().trim().equalsIgnoreCase("")) {
                     addSenderMessage();
 
                     // clear edit text
