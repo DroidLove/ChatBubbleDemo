@@ -5,9 +5,9 @@ import android.arch.persistence.room.TypeConverter;
 import java.util.Date;
 
 /**
- * Created by komalgaikwad on 24/11/17.
+ * Storing the custom data type object in the db using the TypeConverter
+ * according to the data type of database
  */
-
 public class DateConverter {
 
     @TypeConverter

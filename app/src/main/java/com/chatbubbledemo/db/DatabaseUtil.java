@@ -7,7 +7,8 @@ import com.chatbubbledemo.db.entity.ChatEntity;
 import java.util.Random;
 
 /**
- * Generates dummy data and inserts them into the database
+ * Generates dummy data and inserts them into the database.
+ * Also have helper methods to do operation in a different thread
  */
 public class DatabaseUtil {
 
@@ -29,6 +30,10 @@ public class DatabaseUtil {
         new addAsyncTask(db).execute(chatEntitySender, chatEntityReceiver);
     }
 
+
+    /**
+     * The operations accessing the db should be performed in a different thread other than main UI thread
+     */
     private static class addAsyncTask extends AsyncTask<ChatEntity, Void, Void> {
 
         private AppDatabase db;

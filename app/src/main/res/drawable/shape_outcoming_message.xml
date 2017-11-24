@@ -2,11 +2,11 @@
     android:shape="rectangle">
 
     <corners
-        android:bottomLeftRadius="@dimen/dimen_15"
+        android:bottomLeftRadius="@dimen/dimen_16"
         android:bottomRightRadius="0dp"
-        android:topLeftRadius="@dimen/dimen_15"
-        android:topRightRadius="@dimen/dimen_15" />
+        android:topLeftRadius="@dimen/dimen_16"
+        android:topRightRadius="@dimen/dimen_16" />
 
-    <solid android:color="@color/colorAccent" />
+    <solid android:color="@color/colorPrimary" />
 
 </shape>

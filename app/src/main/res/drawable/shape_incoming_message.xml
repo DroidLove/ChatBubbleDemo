@@ -3,10 +3,10 @@
 
     <corners
         android:bottomLeftRadius="0dp"
-        android:bottomRightRadius="@dimen/dimen_15"
-        android:topLeftRadius="@dimen/dimen_15"
-        android:topRightRadius="@dimen/dimen_15" />
+        android:bottomRightRadius="@dimen/dimen_16"
+        android:topLeftRadius="@dimen/dimen_16"
+        android:topRightRadius="@dimen/dimen_16" />
 
-    <solid android:color="@color/colorPrimary" />
+    <solid android:color="@color/ivory_dark" />
 
 </shape>

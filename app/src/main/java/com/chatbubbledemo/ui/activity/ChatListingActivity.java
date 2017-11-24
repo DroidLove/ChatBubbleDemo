@@ -15,8 +15,8 @@ import com.chatbubbledemo.db.AppDatabase;
 import com.chatbubbledemo.db.DatabaseUtil;
 import com.chatbubbledemo.db.entity.ChatEntity;
 import com.chatbubbledemo.ui.adapter.MessageAdapter;
-import com.chatbubbledemo.ui.helper.Constants;
 import com.chatbubbledemo.utils.AppUtils;
+import com.chatbubbledemo.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +28,7 @@ public class ChatListingActivity extends AppCompatActivity {
     List<ChatEntity> mChatList;
     AppDatabase appDatabase;
     private LiveData<List<ChatEntity>> mObservableChats;
-    LinearLayoutManager layoutManager;
+    private LinearLayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,10 @@ public class ChatListingActivity extends AppCompatActivity {
 
         initRecyclerView();
         getChatHistory();
+        clickListeners();
+    }
+
+    private void clickListeners() {
 
         binding.buttonChatSend.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,7 +84,6 @@ public class ChatListingActivity extends AppCompatActivity {
 
         mChatList = new ArrayList<>();
         adapter = new MessageAdapter(ChatListingActivity.this, mChatList);
-        adapter.setLayoutManager(layoutManager);
         binding.recyclerviewMessageView.setAdapter(adapter);
     }
 
@@ -95,7 +98,6 @@ public class ChatListingActivity extends AppCompatActivity {
                     mChatList = chatsHistoryList;
                     // initAdapter(chatsHistoryList);
                     adapter.refresh(mChatList);
-//                    adapter.scrollToBottom();
                     adapter.notifyDataSetChanged();
 
                     if (chatsHistoryList.size() > 0)
@@ -105,5 +107,4 @@ public class ChatListingActivity extends AppCompatActivity {
         });
 
     }
-
 }

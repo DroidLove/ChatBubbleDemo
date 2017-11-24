@@ -7,26 +7,20 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.chatbubbledemo.R;
-import com.chatbubbledemo.databinding.MessageDateTimeBinding;
-import com.chatbubbledemo.databinding.MessageViewLeftBinding;
-import com.chatbubbledemo.databinding.MessageViewRightBinding;
+import com.chatbubbledemo.databinding.MessageViewReceiverBinding;
+import com.chatbubbledemo.databinding.MessageViewSenderBinding;
 import com.chatbubbledemo.db.entity.ChatEntity;
-import com.chatbubbledemo.ui.helper.Constants;
+import com.chatbubbledemo.utils.Constants;
 import com.chatbubbledemo.utils.DateUtils;
 
 import java.util.List;
 
-/**
- * Custom list adapter for the chat timeline
- * Created by Yuvraj.
- */
 public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private LayoutInflater mLayoutInflater;
     private List<ChatEntity> mMessagesList;
     Context activity;
-    private RecyclerView.LayoutManager layoutManager;
-    public final int VIEW_DATE_TIME = 1, VIEW_RIGHT_USER = 2, VIEW_LEFT_USER = 3;
+    public final int VIEW_RECEIVER_MESSAGE = 1, VIEW_SENDER_MESSAGE = 2;
 
     public MessageAdapter(Context context, List<ChatEntity> objects) {
         mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -41,18 +35,14 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        RecyclerView.ViewHolder holder;
         switch (viewType) {
-            case VIEW_DATE_TIME:
-                MessageDateTimeBinding binding = DataBindingUtil.inflate(mLayoutInflater, R.layout.message_date_time, parent, false);
-                return new MessageDateTimeHolder(binding);
 
-            case VIEW_RIGHT_USER:
-                MessageViewRightBinding binding1 = DataBindingUtil.inflate(mLayoutInflater, R.layout.message_view_right, parent, false);
+            case VIEW_RECEIVER_MESSAGE:
+                MessageViewSenderBinding binding1 = DataBindingUtil.inflate(mLayoutInflater, R.layout.message_view_sender, parent, false);
                 return new MessageRightViewHolder(binding1);
 
-            case VIEW_LEFT_USER:
-                MessageViewLeftBinding binding2 = DataBindingUtil.inflate(mLayoutInflater, R.layout.message_view_left, parent, false);
+            case VIEW_SENDER_MESSAGE:
+                MessageViewReceiverBinding binding2 = DataBindingUtil.inflate(mLayoutInflater, R.layout.message_view_receiver, parent, false);
                 return new MessageLeftViewHolder(binding2);
         }
 
@@ -62,15 +52,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
-        if (holder instanceof MessageDateTimeHolder) {
-
-            final ChatEntity message = mMessagesList.get(position);
-//            String date = DateUtils.convertDateFormat(message.getMessageDate(), DateUtils.yyyy_MM_dd_HH_mm_ss_ampm, DateUtils.hh_mm_a);
-
-//            String mDate = DateUtils.getChatFormattedDate(activity, message.getMessageDate());
-//            ((MessageDateTimeHolder) holder).binding.messageDateTime.setText(mDate);
-
-        } else if (holder instanceof MessageRightViewHolder) {
+        if (holder instanceof MessageRightViewHolder) {
 
             final ChatEntity message = mMessagesList.get(position);
             ((MessageRightViewHolder) holder).binding.textviewMessageSender.setText(message.getChatContent());
@@ -89,16 +71,11 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public int getItemViewType(int position) {
         ChatEntity itemMessage = mMessagesList.get(position);
 
-//        if (item.getMessageType().equalsIgnoreCase(DATE_TIME)) {
-//            return VIEW_DATE_TIME;
-//        } else {
-
         if (itemMessage.getChatType().equalsIgnoreCase(Constants.MESSAGE_SENDER))
-            return VIEW_RIGHT_USER;
+            return VIEW_RECEIVER_MESSAGE;
         else
-            return VIEW_LEFT_USER;
-//            return (position % 2 == 0) ? VIEW_RIGHT_USER : VIEW_LEFT_USER;
-//        }
+            return VIEW_SENDER_MESSAGE;
+
     }
 
     @Override
@@ -106,43 +83,21 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         return mMessagesList.size();
     }
 
-    public void scrollToBottom() {
-        if (layoutManager != null) {
-            layoutManager.scrollToPosition(0);
-        }
-    }
-
-    public void setLayoutManager(RecyclerView.LayoutManager layoutManager) {
-        this.layoutManager = layoutManager;
-    }
-
-    private class MessageDateTimeHolder extends RecyclerView.ViewHolder {
-        MessageDateTimeBinding binding;
-
-        MessageDateTimeHolder(MessageDateTimeBinding binding) {
-            super(binding.getRoot());
-            this.binding = binding;
-
-        }
-    }
-
     private class MessageLeftViewHolder extends RecyclerView.ViewHolder {
-        MessageViewLeftBinding binding;
+        MessageViewReceiverBinding binding;
 
-        MessageLeftViewHolder(MessageViewLeftBinding binding) {
+        MessageLeftViewHolder(MessageViewReceiverBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
-
         }
     }
 
     private class MessageRightViewHolder extends RecyclerView.ViewHolder {
-        MessageViewRightBinding binding;
+        MessageViewSenderBinding binding;
 
-        MessageRightViewHolder(MessageViewRightBinding binding) {
+        MessageRightViewHolder(MessageViewSenderBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
-
         }
     }
 }

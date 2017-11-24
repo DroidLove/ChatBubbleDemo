@@ -9,6 +9,9 @@ import android.content.Context;
 import com.chatbubbledemo.db.dao.ChatDao;
 import com.chatbubbledemo.db.entity.ChatEntity;
 
+/**
+ * Contains the config for the actual database
+ */
 @Database(entities = {ChatEntity.class}, version = 1, exportSchema = false)
 @TypeConverters(DateConverter.class)
 public abstract class AppDatabase extends RoomDatabase {

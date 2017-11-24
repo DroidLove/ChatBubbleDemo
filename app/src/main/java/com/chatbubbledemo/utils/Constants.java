@@ -1,4 +1,4 @@
-package com.chatbubbledemo.ui.helper;
+package com.chatbubbledemo.utils;
 
 /**
  * Created by itrs-203 on 11/23/17.
@@ -6,7 +6,6 @@ package com.chatbubbledemo.ui.helper;
 
 public class Constants {
 
-    public static final String DATE_TIME = "datetime";
     public static final String MESSAGE_SENDER = "sender";
     public static final String MESSAGE_RECEIVER = "receiver";
 }

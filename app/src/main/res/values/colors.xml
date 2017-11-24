@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimary">#6274e2</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#ebebeb</color>
 
     <color name="textWhite">#ffffff</color>
     <color name="textDate">#7f7f7f</color>
@@ -13,4 +13,6 @@
     <color name="blue_900">#2a36b1</color>
     <color name="green_dim">#A6C9C5</color>
     <color name="blueGray500">#607D8B</color>
+
+    <color name="ivory_dark">#ae858585</color>
 </resources>

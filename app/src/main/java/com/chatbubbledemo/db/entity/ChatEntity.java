@@ -21,6 +21,9 @@ import android.arch.persistence.room.PrimaryKey;
 
 import java.util.Date;
 
+/**
+ * Represent a table in database
+ */
 @Entity(tableName = "chats")
 public class ChatEntity {
     @PrimaryKey(autoGenerate = true)
