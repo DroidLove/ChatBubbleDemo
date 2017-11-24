@@ -15,17 +15,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <!--<include-->
-                <!--android:id="@+id/common_toolbar_layout"-->
-                <!--layout="@layout/common_chat_layout_with_menu" />-->
-
-            <!--<android.support.v7.widget.RecyclerView-->
-            <!--android:id="@+id/lvChat"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_above="@+id/llChatBottom"-->
-            <!--android:divider="@null" />-->
-
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerview_message_view"
                 android:layout_width="match_parent"
@@ -60,31 +49,23 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <!--<ImageView-->
-                            <!--android:layout_width="24dp"-->
-                            <!--android:layout_height="24dp"-->
-                            <!--android:layout_gravity="center_vertical"-->
-                            <!--android:paddingLeft="@dimen/dimen_12"-->
-                            <!--android:scaleType="centerCrop"-->
-                            <!--android:visibility="gone"-->
-                            <!--app:srcCompat="@drawable/ic_smartphone_gray" />-->
-
                         <android.support.v7.widget.AppCompatEditText
                             android:id="@+id/editTextChat"
-                            style="@style/TextDate_Normal"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:background="@null"
+                            android:fontFamily="@font/domine"
                             android:hint="@string/chat_hint"
                             android:inputType="textMultiLine"
                             android:maxEms="5"
                             android:maxLines="5"
                             android:paddingBottom="@dimen/dimen_12"
-                            android:paddingLeft="15dp"
+                            android:paddingLeft="@dimen/dimen_16"
                             android:paddingRight="12dp"
                             android:paddingTop="12dp"
                             android:text=""
+                            android:textColor="@color/textEditBox"
                             android:textColorHint="#929292"
                             android:textSize="15sp" />
 

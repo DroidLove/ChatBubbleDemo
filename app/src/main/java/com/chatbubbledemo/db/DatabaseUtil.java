@@ -26,10 +26,13 @@ public class DatabaseUtil {
         return RECEIVER_MESSAGES[commentsNumber];
     }
 
-    public static void addChatToDataBase(AppDatabase db, ChatEntity chatEntitySender, ChatEntity chatEntityReceiver) {
-        new addAsyncTask(db).execute(chatEntitySender, chatEntityReceiver);
+    public static void addSenderChatToDataBase(AppDatabase db, ChatEntity chatEntitySender) {
+        new addAsyncTask(db).execute(chatEntitySender);
     }
 
+    public static void addReceiverChatToDataBase(AppDatabase db, ChatEntity chatEntityReceiver) {
+        new addAsyncTask(db).execute(chatEntityReceiver);
+    }
 
     /**
      * The operations accessing the db should be performed in a different thread other than main UI thread
@@ -44,17 +47,16 @@ public class DatabaseUtil {
 
         @Override
         protected Void doInBackground(final ChatEntity... params) {
-            insertChatData(db, params[0], params[1]);
+            insertChatData(db, params[0]);
             return null;
         }
 
     }
 
-    public static void insertChatData(AppDatabase db, ChatEntity chatEntitySender, ChatEntity chatEntityReceiver) {
+    public static void insertChatData(AppDatabase db, ChatEntity chatEntity) {
         db.beginTransaction();
         try {
-            db.chatDao().insert(chatEntitySender);
-            db.chatDao().insert(chatEntityReceiver);
+            db.chatDao().insert(chatEntity);
             db.setTransactionSuccessful();
         } finally {
             db.endTransaction();

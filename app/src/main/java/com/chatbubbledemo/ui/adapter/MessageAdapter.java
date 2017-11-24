@@ -21,6 +21,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private List<ChatEntity> mMessagesList;
     Context activity;
     public final int VIEW_RECEIVER_MESSAGE = 1, VIEW_SENDER_MESSAGE = 2;
+    int lastPosition = 0;
 
     public MessageAdapter(Context context, List<ChatEntity> objects) {
         mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -30,7 +31,6 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     public void refresh(List<ChatEntity> mMessagesList) {
         this.mMessagesList = mMessagesList;
-        notifyDataSetChanged();
     }
 
     @Override
