@@ -2,38 +2,10 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/messageText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <android.support.v7.widget.CardView
-            style="@style/CardViewStyle_Normal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            app:cardBackgroundColor="@color/green_dim">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="vertical"
-                android:padding="@dimen/dimen_8">
-
-                <TextView
-                    android:id="@+id/message_date_time"
-                    style="@style/TextDate_Normal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:maxWidth="@dimen/dimen_240"
-                    android:text=""
-                    android:textColor="@color/textWhite"
-                    android:textSize="@dimen/textSize_12" />
-
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
-    </LinearLayout>
+        android:gravity="center_horizontal"
+        android:padding="16dp"/>
 </layout>

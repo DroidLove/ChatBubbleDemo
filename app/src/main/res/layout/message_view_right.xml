@@ -2,52 +2,44 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp">
 
-        <android.support.v7.widget.CardView
-            android:id="@+id/cardview"
-            style="@style/CardViewStyle_Normal"
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@id/bubble"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            app:cardBackgroundColor="@color/chat_adoption_bubble">
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="88dp"
+            android:layout_marginStart="88dp"
+            app:alignContent="stretch"
+            app:alignItems="stretch"
+            app:flexWrap="wrap"
+            app:justifyContent="flex_end">
 
-            <LinearLayout
+            <TextView
+                android:id="@id/messageText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:orientation="vertical"
-                android:padding="@dimen/dimen_8">
+                android:layout_alignWithParentIfMissing="true"/>
 
-                <TextView
-                    android:id="@+id/message_text"
-                    style="@style/TextDate_Normal"
-                    android:layout_width="10dp"
-                    android:layout_height="wrap_content"
-                    android:autoLink="all"
-                    android:gravity="left"
-                    android:maxWidth="@dimen/dimen_240"
-                    android:text=""
-                    android:textColor="@color/textWhite"
-                    android:textColorLink="@color/blue_900"
-                    android:textSize="@dimen/textSize_14" />
+            <TextView
+                android:id="@id/messageTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/messageText"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                app:layout_alignSelf="center"
+                app:layout_order="1"/>
 
-                <TextView
-                    android:id="@+id/message_time"
-                    style="@style/TextDate_Normal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:layout_marginLeft="@dimen/dimen_16"
-                    android:layout_marginTop="@dimen/dimen_4"
-                    android:text="dcwdc"
-                    android:textSize="@dimen/textSize_12" />
+        </com.google.android.flexbox.FlexboxLayout>
 
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
-    </LinearLayout>
+    </RelativeLayout>
 </layout>
