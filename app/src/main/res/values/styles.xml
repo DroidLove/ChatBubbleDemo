@@ -35,4 +35,8 @@
         <item name="android:textSize">@dimen/textSize_12</item>
     </style>
 
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/drawable_splash</item>
+    </style>
+
 </resources>
