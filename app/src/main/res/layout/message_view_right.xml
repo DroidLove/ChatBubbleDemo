@@ -4,10 +4,10 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="8dp">
+        android:layout_marginBottom="@dimen/dimen_8"
+        android:layout_marginLeft="@dimen/dimen_16"
+        android:layout_marginRight="@dimen/dimen_16"
+        android:layout_marginTop="@dimen/dimen_8">
 
         <RelativeLayout
             android:id="@id/bubble"
@@ -17,8 +17,8 @@
             android:layout_alignParentRight="true"
             android:layout_marginLeft="88dp"
             android:layout_marginStart="88dp"
-            android:padding="@dimen/dimen_16"
-            android:background="@drawable/shape_outcoming_message">
+            android:background="@drawable/shape_outcoming_message"
+            android:padding="@dimen/dimen_16">
 
             <TextView
                 android:id="@+id/textview_message_sender"
@@ -26,16 +26,21 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/domine"
                 android:text="Hii I am doing grest. What about you"
-                android:textColor="@color/textWhite" />
+                android:textColor="@color/textWhite"
+                android:textSize="@dimen/textSize_16" />
 
             <TextView
                 android:id="@+id/textview_message_time_sender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/messageText"
-                android:layout_marginLeft="8dp"
-                android:layout_marginStart="8dp"
-                android:fontFamily="@font/domine" />
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/textview_message_sender"
+                android:layout_marginTop="@dimen/dimen_4"
+                android:fontFamily="@font/domine"
+                android:text=""
+                android:textColor="@color/textWhite"
+                android:textSize="@dimen/textSize_12"
+                android:visibility="visible" />
 
         </RelativeLayout>
 

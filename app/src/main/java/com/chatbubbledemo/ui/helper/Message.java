@@ -14,7 +14,7 @@ public class Message {
     private String userType;
     private boolean isSender;
 
-    public Message(String id, String userType, String text,boolean isSender) {
+    public Message(String id, String userType, String text, boolean isSender) {
         this.id = id;
         this.text = text;
         this.userType = userType;

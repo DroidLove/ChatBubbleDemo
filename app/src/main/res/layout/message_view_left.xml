@@ -13,27 +13,32 @@
             android:id="@+id/bubble"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/shape_incoming_message"
             android:layout_marginEnd="40dp"
             android:layout_marginRight="40dp"
+            android:background="@drawable/shape_incoming_message"
+            android:orientation="vertical"
             android:padding="@dimen/dimen_16">
 
             <TextView
                 android:id="@+id/textview_message_receiver"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/textWhite"
                 android:fontFamily="@font/domine"
-                android:text="I am yoman Nice to meet you"/>
+                android:text="I am yoman Nice to meet you"
+                android:textColor="@color/textWhite"
+                android:textSize="@dimen/textSize_16" />
 
             <TextView
                 android:id="@+id/textview_message_receiver_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/messageText"
-                android:layout_marginLeft="8dp"
-                android:layout_marginStart="8dp"/>
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/textview_message_receiver"
+                android:layout_marginTop="@dimen/dimen_4"
+                android:fontFamily="@font/domine"
+                android:text=""
+                android:textColor="@color/textWhite"
+                android:textSize="@dimen/textSize_12" />
 
         </RelativeLayout>
 

@@ -19,13 +19,15 @@ package com.chatbubbledemo.db.entity;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+import java.util.Date;
+
 @Entity(tableName = "chats")
 public class ChatEntity {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String chatType;
     private String chatContent;
-    private String date;
+    private Date date;
 
     public int getId() {
         return id;
@@ -51,11 +53,11 @@ public class ChatEntity {
         this.chatContent = chatContent;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

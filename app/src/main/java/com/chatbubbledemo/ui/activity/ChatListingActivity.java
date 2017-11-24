@@ -28,23 +28,16 @@ public class ChatListingActivity extends AppCompatActivity {
     List<ChatEntity> mChatList;
     AppDatabase appDatabase;
     private LiveData<List<ChatEntity>> mObservableChats;
+    LinearLayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_chat_listing);
-        mChatList = new ArrayList<>();
+
         appDatabase = AppDatabase.getDatabase(this.getApplication());
-        adapter = new MessageAdapter(ChatListingActivity.this, mChatList);
-        binding.recyclerviewMessageView.setAdapter(adapter);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        binding.recyclerviewMessageView.setHasFixedSize(true);
-        binding.recyclerviewMessageView.setLayoutManager(layoutManager);
-        binding.recyclerviewMessageView.setItemViewCacheSize(20);
-        binding.recyclerviewMessageView.setDrawingCacheEnabled(true);
-        binding.recyclerviewMessageView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
-
+        initRecyclerView();
         getChatHistory();
 
         binding.buttonChatSend.setOnClickListener(new View.OnClickListener() {
@@ -52,53 +45,43 @@ public class ChatListingActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 // adding the sender and the receiver data
-//                mChatList.add(new Message("1", Constants.MESSAGE_SENDER, binding.editTextChat.getText().toString(), true));
-if(!binding.editTextChat.getText().toString().equalsIgnoreCase("")) {
-    ChatEntity chatEntity = new ChatEntity();
-    chatEntity.setChatType(Constants.MESSAGE_SENDER);
-    chatEntity.setChatContent(binding.editTextChat.getText().toString());
-    chatEntity.setDate("");
-    mChatList.add(chatEntity);
+                if (!binding.editTextChat.getText().toString().equalsIgnoreCase("")) {
+                    ChatEntity chatEntity = new ChatEntity();
+                    chatEntity.setChatType(Constants.MESSAGE_SENDER);
+                    chatEntity.setChatContent(binding.editTextChat.getText().toString());
+                    chatEntity.setDate(new java.util.Date());
+                    mChatList.add(chatEntity);
 
-//                mChatList.add(new Message("2", Constants.MESSAGE_RECEIVER, "Hello", false));
+                    ChatEntity chatEntity1 = new ChatEntity();
+                    chatEntity1.setChatType(Constants.MESSAGE_RECEIVER);
+                    chatEntity1.setChatContent(DatabaseUtil.generateRandomReceiverMessage());
+                    chatEntity1.setDate(new java.util.Date());
+                    mChatList.add(chatEntity1);
 
-    ChatEntity chatEntity1 = new ChatEntity();
-    chatEntity1.setChatType(Constants.MESSAGE_RECEIVER);
-    chatEntity1.setChatContent("Hello");
-    chatEntity1.setDate("");
-    mChatList.add(chatEntity1);
+                    DatabaseUtil.addChatToDataBase(appDatabase, chatEntity, chatEntity1);
 
-    DatabaseUtil.addChatToDataBase(appDatabase, chatEntity, chatEntity1);
-
-    // clear edit text
-    binding.editTextChat.setText("");
-} else{
-    AppUtils.toastMessage(ChatListingActivity.this,"Please enter some message");
-}
-//                initAdapter(mChatList);
+                    // clear edit text
+                    binding.editTextChat.setText("");
+                } else {
+                    AppUtils.toastMessage(ChatListingActivity.this, "Please enter some message");
+                }
             }
         });
     }
 
-    private void initAdapter(List<ChatEntity> messages) {
-        //if (adapter == null) {
-          //  adapter = new MessageAdapter(this, messages);
-            binding.recyclerviewMessageView.setAdapter(adapter);
-       // } else {
+    private void initRecyclerView() {
 
-            if (mChatList != null && mChatList.size() > 0) {
-                // adapter.notifyItemChanged(mChatList.size());
-                adapter.notifyDataSetChanged();
-            } else {
-                adapter.refresh(messages);
-            }
-       // }
+        layoutManager = new LinearLayoutManager(this);
+        binding.recyclerviewMessageView.setHasFixedSize(true);
+        binding.recyclerviewMessageView.setLayoutManager(layoutManager);
+        binding.recyclerviewMessageView.setItemViewCacheSize(20);
+        binding.recyclerviewMessageView.setDrawingCacheEnabled(true);
+        binding.recyclerviewMessageView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
 
-        try {
-            binding.recyclerviewMessageView.getLayoutManager().scrollToPosition(mChatList.size() - 1);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        mChatList = new ArrayList<>();
+        adapter = new MessageAdapter(ChatListingActivity.this, mChatList);
+        adapter.setLayoutManager(layoutManager);
+        binding.recyclerviewMessageView.setAdapter(adapter);
     }
 
     private void getChatHistory() {
@@ -112,11 +95,14 @@ if(!binding.editTextChat.getText().toString().equalsIgnoreCase("")) {
                     mChatList = chatsHistoryList;
                     // initAdapter(chatsHistoryList);
                     adapter.refresh(mChatList);
+//                    adapter.scrollToBottom();
                     adapter.notifyDataSetChanged();
+
+                    if (chatsHistoryList.size() > 0)
+                        layoutManager.scrollToPosition(chatsHistoryList.size() - 1);
                 }
             }
         });
-
 
     }
 
