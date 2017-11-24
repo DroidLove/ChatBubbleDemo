@@ -8,7 +8,6 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.SimpleItemAnimator;
 import android.view.View;
 
@@ -20,12 +19,13 @@ import com.chatbubbledemo.db.entity.ChatEntity;
 import com.chatbubbledemo.ui.adapter.MessageAdapter;
 import com.chatbubbledemo.utils.AppUtils;
 import com.chatbubbledemo.utils.Constants;
+import com.chatbubbledemo.utils.NPALinearLayoutManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Using LiveData to keep the UI updated with the data changes in the database.
  */
 public class ChatListingActivity extends AppCompatActivity {
 
@@ -34,7 +34,7 @@ public class ChatListingActivity extends AppCompatActivity {
     List<ChatEntity> mChatList;
     AppDatabase appDatabase;
     private LiveData<List<ChatEntity>> mObservableChats;
-    private LinearLayoutManager layoutManager;
+    private NPALinearLayoutManager layoutManager;
     private boolean receiverMessageFlag = false;
 
     @Override
@@ -95,13 +95,13 @@ public class ChatListingActivity extends AppCompatActivity {
                 DatabaseUtil.addReceiverChatToDataBase(appDatabase, chatEntityReceiver);
 
             }
-        },1000);
+        }, 1000);
 
     }
 
     private void initRecyclerView() {
 
-        layoutManager = new LinearLayoutManager(this);
+        layoutManager = new NPALinearLayoutManager(this);
         SimpleItemAnimator itemAnimator = new DefaultItemAnimator();
         itemAnimator.setSupportsChangeAnimations(false);
 
@@ -132,7 +132,7 @@ public class ChatListingActivity extends AppCompatActivity {
                     if (chatsHistoryList.size() > 0)
                         layoutManager.scrollToPosition(chatsHistoryList.size() - 1);
 
-                    if(receiverMessageFlag){
+                    if (receiverMessageFlag) {
                         addReceiverMessage();
                     }
                 }
