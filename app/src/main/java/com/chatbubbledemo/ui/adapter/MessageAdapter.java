@@ -58,9 +58,10 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         mStatusColor = ContextCompat.getColor(activity, R.color.blueGray500);
     }
 
-    public void refresh(List<ChatEntity> data) {
-        mMessagesList.clear();
-        mMessagesList.addAll(data);
+    public void refresh(List<ChatEntity> mMessagesList) {
+       // mMessagesList.clear();
+        // mMessagesList.addAll(data);
+        this.mMessagesList = mMessagesList;
         notifyDataSetChanged();
     }
 

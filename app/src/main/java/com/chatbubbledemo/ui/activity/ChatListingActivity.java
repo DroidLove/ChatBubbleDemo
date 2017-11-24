@@ -16,6 +16,7 @@ import com.chatbubbledemo.db.DatabaseUtil;
 import com.chatbubbledemo.db.entity.ChatEntity;
 import com.chatbubbledemo.ui.adapter.MessageAdapter;
 import com.chatbubbledemo.ui.helper.Constants;
+import com.chatbubbledemo.utils.AppUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +35,8 @@ public class ChatListingActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_chat_listing);
         mChatList = new ArrayList<>();
         appDatabase = AppDatabase.getDatabase(this.getApplication());
+        adapter = new MessageAdapter(ChatListingActivity.this, mChatList);
+        binding.recyclerviewMessageView.setAdapter(adapter);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         binding.recyclerviewMessageView.setHasFixedSize(true);
@@ -50,43 +53,46 @@ public class ChatListingActivity extends AppCompatActivity {
 
                 // adding the sender and the receiver data
 //                mChatList.add(new Message("1", Constants.MESSAGE_SENDER, binding.editTextChat.getText().toString(), true));
-
-                ChatEntity chatEntity = new ChatEntity();
-                chatEntity.setChatType(Constants.MESSAGE_SENDER);
-                chatEntity.setChatContent(binding.editTextChat.getText().toString());
-                chatEntity.setDate("");
-                mChatList.add(chatEntity);
+if(!binding.editTextChat.getText().toString().equalsIgnoreCase("")) {
+    ChatEntity chatEntity = new ChatEntity();
+    chatEntity.setChatType(Constants.MESSAGE_SENDER);
+    chatEntity.setChatContent(binding.editTextChat.getText().toString());
+    chatEntity.setDate("");
+    mChatList.add(chatEntity);
 
 //                mChatList.add(new Message("2", Constants.MESSAGE_RECEIVER, "Hello", false));
 
-                ChatEntity chatEntity1 = new ChatEntity();
-                chatEntity1.setChatType(Constants.MESSAGE_RECEIVER);
-                chatEntity1.setChatContent("Hello");
-                chatEntity1.setDate("");
-                mChatList.add(chatEntity1);
+    ChatEntity chatEntity1 = new ChatEntity();
+    chatEntity1.setChatType(Constants.MESSAGE_RECEIVER);
+    chatEntity1.setChatContent("Hello");
+    chatEntity1.setDate("");
+    mChatList.add(chatEntity1);
 
-                DatabaseUtil.addChatToDataBase(appDatabase, chatEntity, chatEntity1);
+    DatabaseUtil.addChatToDataBase(appDatabase, chatEntity, chatEntity1);
 
-                // clear edit text
-                binding.editTextChat.setText("");
-
+    // clear edit text
+    binding.editTextChat.setText("");
+} else{
+    AppUtils.toastMessage(ChatListingActivity.this,"Please enter some message");
+}
 //                initAdapter(mChatList);
             }
         });
     }
 
     private void initAdapter(List<ChatEntity> messages) {
-        if (adapter == null) {
-            adapter = new MessageAdapter(this, messages);
+        //if (adapter == null) {
+          //  adapter = new MessageAdapter(this, messages);
             binding.recyclerviewMessageView.setAdapter(adapter);
-        } else {
-            adapter = new MessageAdapter(ChatListingActivity.this, messages);
+       // } else {
+
             if (mChatList != null && mChatList.size() > 0) {
-                adapter.notifyItemChanged(mChatList.size());
+                // adapter.notifyItemChanged(mChatList.size());
+                adapter.notifyDataSetChanged();
             } else {
                 adapter.refresh(messages);
             }
-        }
+       // }
 
         try {
             binding.recyclerviewMessageView.getLayoutManager().scrollToPosition(mChatList.size() - 1);
@@ -94,7 +100,6 @@ public class ChatListingActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
 
     private void getChatHistory() {
 
@@ -105,7 +110,9 @@ public class ChatListingActivity extends AppCompatActivity {
                 if (chatsHistoryList != null) {
 
                     mChatList = chatsHistoryList;
-                    initAdapter(chatsHistoryList);
+                    // initAdapter(chatsHistoryList);
+                    adapter.refresh(mChatList);
+                    adapter.notifyDataSetChanged();
                 }
             }
         });

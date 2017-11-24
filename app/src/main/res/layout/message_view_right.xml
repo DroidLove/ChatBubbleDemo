@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -9,21 +8,6 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="8dp">
-
-        <!--<com.google.android.flexbox.FlexboxLayout-->
-            <!--android:id="@id/bubble"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignParentEnd="true"-->
-            <!--android:layout_alignParentRight="true"-->
-            <!--android:layout_marginLeft="88dp"-->
-            <!--android:layout_marginStart="88dp"-->
-            <!--app:alignContent="stretch"-->
-            <!--android:padding="@dimen/dimen_16"-->
-            <!--app:alignItems="stretch"-->
-            <!--android:background="@drawable/shape_outcoming_message"-->
-            <!--app:flexWrap="wrap"-->
-            <!--app:justifyContent="flex_end"-->
 
         <RelativeLayout
             android:id="@id/bubble"
@@ -40,9 +24,9 @@
                 android:id="@+id/textview_message_sender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hii"
-                android:textColor="@color/textWhite"
-                android:layout_alignWithParentIfMissing="true"/>
+                android:fontFamily="@font/domine"
+                android:text="Hii I am doing grest. What about you"
+                android:textColor="@color/textWhite" />
 
             <TextView
                 android:id="@+id/textview_message_time_sender"
@@ -51,8 +35,7 @@
                 android:layout_below="@id/messageText"
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
-                app:layout_alignSelf="center"
-                app:layout_order="1"/>
+                android:fontFamily="@font/domine" />
 
         </RelativeLayout>
 

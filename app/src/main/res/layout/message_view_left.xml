@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -10,26 +9,23 @@
         android:layout_marginRight="16dp"
         android:layout_marginTop="8dp">
 
-        <com.google.android.flexbox.FlexboxLayout
+        <RelativeLayout
             android:id="@+id/bubble"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:alignContent="stretch"
             android:background="@drawable/shape_incoming_message"
             android:layout_marginEnd="40dp"
             android:layout_marginRight="40dp"
-            app:alignItems="stretch"
-            android:padding="@dimen/dimen_16"
-            app:flexWrap="wrap"
-            app:justifyContent="flex_end">
+            android:padding="@dimen/dimen_16">
 
             <TextView
                 android:id="@+id/textview_message_receiver"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/textWhite"
-                android:text=""/>
+                android:fontFamily="@font/domine"
+                android:text="I am yoman Nice to meet you"/>
 
             <TextView
                 android:id="@+id/textview_message_receiver_time"
@@ -37,10 +33,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/messageText"
                 android:layout_marginLeft="8dp"
-                android:layout_marginStart="8dp"
-                app:layout_alignSelf="center"/>
+                android:layout_marginStart="8dp"/>
 
-        </com.google.android.flexbox.FlexboxLayout>
+        </RelativeLayout>
 
     </RelativeLayout>
 </layout>
